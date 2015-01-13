@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category 
+            name="Ant Build Generation"
+            id="com.learning.build.category">
+      </category>
+      <command
+            name="Generate Script..."
+            categoryId="com.learning.build.category"
+            id="com.learning.build.category.generateANTScript">
+      </command>
+    </extension>
+    
+    <extension point="org.eclipse.ui.handlers">
+	      <handler 
+            commandId="com.learning.ant.menus.generateANTScript"
+            class="com.learning.ant.build.action.AntBuildHandler">
+      	  </handler>
+	</extension>
+
+   <extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=window">
+         <menu label="ANT Build"
+               mnemonic="A"               
+               id="com.learning.ant.build.menu">
+            <command
+                  commandId="com.learning.ant.menus.generateANTScript"                 
+                  mnemonic="A"
+                  id="com.learning.ant.menus.generateANTScript">         
+            </command>
+			</menu>
+		</menuContribution>
+	</extension>
+
+    
+</plugin>      
