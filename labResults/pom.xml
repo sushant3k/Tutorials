@@ -1,0 +1,159 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.etipl.labResults</groupId>
+  <artifactId>labResults</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+
+  <name>labResults</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <hbase.version>0.98.5-hadoop2</hbase.version> <!--  0.98.9-hadoop2 -->
+    <osgi.version>4.2.0</osgi.version>
+  </properties>
+   
+	<dependencies>
+     	<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-common</artifactId>
+			<version>${hbase.version}</version>
+		</dependency>
+
+	<dependency>
+	    <groupId>jdk.tools</groupId>
+	    <artifactId>jdk.tools</artifactId>   
+	    <version>1.7</version>
+	       
+	</dependency>
+
+	<dependency>
+		<groupId>org.apache.hbase</groupId>
+		<artifactId>hbase-client</artifactId>
+		<version>${hbase.version}</version>
+	</dependency>
+
+	 
+	  <dependency>
+		   <groupId>com.sun</groupId>
+		   <artifactId>tools</artifactId>
+		   <version>1.7.0</version>
+		   <scope>system</scope>
+		   <systemPath>${env.JAVA_HOME}/lib/tools.jar</systemPath>
+	 </dependency>
+	 
+	 <dependency>
+         <groupId>org.osgi</groupId>
+         <artifactId>org.osgi.core</artifactId>
+         <version>${osgi.version}</version>
+         <!--  <scope>provided</scope> -->
+      </dependency>
+      <dependency>
+      	<groupId>org.osgi</groupId>
+      	<artifactId>org.osgi.enterprise</artifactId>
+      	<version>${osgi.version}</version>
+      	<!--  <scope>provided</scope> -->
+      </dependency>
+    
+      </dependencies>
+      
+     
+		
+     <build>
+		<plugins>
+			<plugin>
+				<!-- This plugin takes care of packaging the artifact as an OSGi Bundle -->
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<!-- OSGi Manifest Metadata is specified here -->
+						<!-- The Bundle SymbolicName is the same as the artifact ID -->
+						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-Version>1.0.0</Bundle-Version>
+						<!-- Specify the Bundle activator, which is invoked when the Bundle 
+							is started -->
+						<Bundle-Activator>com.etip.activator.ApplicationActivator</Bundle-Activator>
+						<Bundle-Vendor>iCare.com</Bundle-Vendor>
+						<!-- Automatically compute all the necessary Import-Package statements -->
+						<Import-Package>
+							org.osgi.framework, *;resolution=optional							
+						</Import-Package>
+						<!-- This bundle export following packages -->
+						<Export-Package> com.etipl.labResult.service,com.etipl.labResults.model,com.etipl.labResults.nosql.framework.annotations,
+										com.etipl.labResults.nosql.framework.nosql.spi,
+										com.etipl.labTest.service, com.etipl.nosql.framework.exception,
+										com.etipl.nosql.framework.connection, 
+										
+					  <!-- com.icare.rpc.allergy.service,com.icare.rpc.allergy.exception -->
+					  </Export-Package>
+
+						<!-- Packages that are not exported but need to be included need to 
+							be listed as Private-Package -->
+                        <Private-Package>						
+						</Private-Package>
+						
+					</instructions>
+				</configuration>
+			</plugin>
+
+			<!-- Compiler plugin enforces Java 1.6 compatibility to remove unnecessary 
+				warnings about execution environment in IDE -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<!-- continue build even test fails -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>buildnumber-maven-plugin</artifactId> 
+				<configuration> <format>{0,date,dd/MM/yyyy}</format> <items> <item>timestamp</item> 
+				</items> </configuration> <executions> <execution> <phase>validate</phase> 
+				<goals> <goal>create</goal> </goals> </execution> </executions> </plugin> -->
+
+
+						
+			    <plugin>
+			      <artifactId>maven-assembly-plugin</artifactId>
+			      <configuration>
+			        <descriptorRefs>
+			          <descriptorRef>jar-with-dependencies</descriptorRef>
+			        </descriptorRefs>
+			        <archive>
+			          <manifest>
+			            <mainClass>com.sushant.App</mainClass>
+			          </manifest>
+			        </archive>
+			      </configuration>
+			      <executions>
+			        <execution>
+			          <phase>package</phase>
+			          <goals>
+			            <goal>single</goal>
+			          </goals>
+			        </execution>
+			      </executions>
+			    </plugin>
+  
+
+		</plugins>
+	</build>
+	
+   
+</project>

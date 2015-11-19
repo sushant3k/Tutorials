@@ -1,4 +1,4 @@
-Simple WebSocket using AngularJS + BootStap + Thymeleaf + SockJS + Spring Boot
+Simple WebSocket using AngularJS + BootStrap + Thymeleaf + SockJS + Spring Boot
 ===============================================================================
 
 Simple Web Socket

@@ -1,0 +1,79 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>hbase-osgi</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <name>hbase-osgi</name>
+  <url>http://maven.apache.org</url>
+
+	<parent>
+		<groupId>com.etipl</groupId>
+		<artifactId>etipl-hbase</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <hbase.version>0.98.5-hadoop2</hbase.version> <!--  0.98.9-hadoop2 -->    
+  </properties>
+   
+	<dependencies>
+     	<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-common</artifactId>
+			<version>${hbase.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>avalon-framework</groupId>
+			<artifactId>avalon-framework</artifactId>
+			<version>4.1.5</version>
+		</dependency>
+
+
+	<dependency>
+		<groupId>org.apache.hbase</groupId>
+		<artifactId>hbase-client</artifactId>
+		<version>${hbase.version}</version>
+	</dependency>
+
+	 
+	  <dependency>
+		   <groupId>jdk.tools</groupId>
+		   <artifactId>jdk.tools</artifactId>		   
+		   <scope>system</scope>
+		   <version>1.7.0</version>
+		   <systemPath>${env.JAVA_HOME}/lib/tools.jar</systemPath>
+	 </dependency>
+	 
+	 <dependency>
+	    <groupId>org.hibernate.javax.persistence</groupId>
+	    <artifactId>hibernate-jpa-2.0-api</artifactId>
+	    <version>1.0.1.Final</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.google.guava</groupId>
+		<artifactId>guava</artifactId>
+		<version>18.0</version>
+	</dependency>
+	
+</dependencies>
+     
+     <build>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+</project>

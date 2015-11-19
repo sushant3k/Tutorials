@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: labResults
+Bundle-SymbolicName: labResults
+Bundle-Version: 1.0.0.qualifier
+Export-Package: com.etipl.activator,
+ com.etipl.labResult.service,
+ com.etipl.labResults,
+ com.etipl.labResults.model,
+ com.etipl.labResults.nosql.framework.annotations,
+ com.etipl.labResults.nosql.framework.nosql.spi,
+ com.etipl.labTest.service,
+ com.etipl.nosql.framework.connection,
+ com.etipl.nosql.framework.exception
