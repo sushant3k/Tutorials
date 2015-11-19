@@ -1,6 +1,6 @@
 package com.learning.oauth2.security.filter;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LinkedinUser extends AuthenticatedUser{

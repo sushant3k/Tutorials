@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="app"  xmlns:th="http://www.thymeleaf.org">
+<head>	
+<title>Websocket Demo using ChatRooms</title>
+
+<meta name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+    
+<meta content="IE=Edge, chrome=IE7" http-equiv="X-UA-Compatible"/>
+<meta charset="utf-8"/>
+
+
+<!-- Latest compiled and minified CSS -->
+
+<link th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet" media="screen">
+
+</head>
+
+<body class="container-fluid" >
+
+<div ng-view="">
+</div>
+
+	<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+	<script th:src="@{/static/scripts/stomp.min.js}"></script>
+	<script th:src="@{static/scripts/sockjs-0.3.4.min.js}"></script>	
+
+	<script th:src="@{/webjars/angularjs/1.3.8/angular.min.js}"></script>    
+	<script th:src="@{/webjars/angularjs/1.3.8/angular-route.min.js}"></script>
+	<script th:src="@{/webjars/angularjs/1.3.8/angular-sanitize.min.js}"></script>
+	    
+	<script th:src="@{/static/scripts/app.js}"></script> 	
+	
+	<script th:src="@{/static/scripts/controllers/chatRoomController.js}"></script>
+	<script th:src="@{/static/scripts/services/chatRoomService.js}"></script>
+	
+</body>
+</html>

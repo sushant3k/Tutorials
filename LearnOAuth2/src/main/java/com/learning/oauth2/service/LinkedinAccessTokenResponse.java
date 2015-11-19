@@ -3,7 +3,7 @@
  */
 package com.learning.oauth2.service;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * @author Sushant

@@ -152,6 +152,8 @@ public class HBaseNativeNoSqlSvcImpl extends NoSqlSvc {
 			throw new ApplicationException(e);
 		} catch (InterruptedIOException e) {
 			throw new ApplicationException(e);
+		} catch (IOException e) {
+			throw new ApplicationException(e);
 		} finally {
 			closeHTableConnection(table);
 		}

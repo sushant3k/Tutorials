@@ -13,6 +13,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <hbase.version>0.98.5-hadoop2</hbase.version> <!--  0.98.9-hadoop2 -->
+    <datanucleus.version>4.0.5</datanucleus.version>
   </properties>
 
   <dependencies>
@@ -24,7 +25,22 @@
 	</dependency>
 	-->
 	
+	<!-- <dependency>
+		<groupId>org.datanucleus</groupId>
+		<artifactId>datanucleus-accessplatform-parent</artifactId>
+		<version>${datanucleus.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.datanucleus</groupId>
+		<artifactId>datanucleus-hbase</artifactId>
+		<version>${datanucleus.version}</version>  
+	  </dependency>
 
+	-->
+	
+
+	
 	<dependency>
 		<groupId>org.apache.hbase</groupId>
 		<artifactId>hbase-common</artifactId>
@@ -70,7 +86,6 @@
 	 </dependency>
   
 	  
-
   </dependencies>
   
   
@@ -91,6 +106,8 @@
           <scope>system</scope>
           <systemPath>${java.home}/../lib/tools.jar</systemPath>
         </dependency>
+        
+        
       </dependencies>
     </profile>
   </profiles>

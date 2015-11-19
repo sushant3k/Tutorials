@@ -1,0 +1,95 @@
+<div ng-controller="ChatRoomController">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6"> 
+			<div>
+				<div class="jumbotron" style="margin-top:20px;min-height:400px;">
+					<div class="row">
+						<div class="col-xs-2"></div>
+						<div class="col-xs-12 ">
+								<h3 style="margin-top:0px;">Welcome to the group chat Demo !!!</h3>
+						</div>
+						<div class="col-xs-2"></div>						
+					</div>
+					<div class="row" style="margin-top:5px;">
+						<div class="col-xs-3"></div>
+						<div class="col-xs-6" style="color:green;">
+								<h4>{{ msg }}</h4>
+						</div>
+						<div class="col-xs-3"></div>
+					</div>
+					
+					<div class="row" style="margin-top:5px;">
+						<div class="col-xs-12 col-sm-12 col-md-6">
+							<div class="row">
+								<div class="col-xs-12 col-md-12">
+									<label>Channels:</label>
+									<div style="margin-top:10px;">
+										<select id="cid" ng-model="channelId"
+											class="form-control"
+											ng-options="cr.id as cr.name for cr in chatrooms.chatRoom">
+										</select>
+									</div>
+								</div>								
+							</div>
+							<div class="row" style="margin-top:20px; margin-bottom:20px;">
+								<div class="col-xs-12">
+									<div class="row">
+										<div  class="col-xs-12 col-sm-12 col-md-5">
+											<button class="btn btn-primary" ng-click="initChat()")>Subscribe to Channel</button>
+										</div>
+										<div class="col-xs-12 col-sm-0 col-md-2"></div>
+										<div class="col-xs-12 col-sm-12 col-md-5">
+											<button class="btn btn-primary" ng-click="disconnect()")>Disconnect</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-xs-12 col-sm-12 col-md-6">
+							<div class="row">
+								<div class="col-xs-12">
+									<label>Enter your message: </label>					
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12" style="margin-top:10px;">
+									<textarea rows="5" cols="40" id="txtMessage"></textarea>
+								</div>
+							</div>
+							<div class="row">
+								
+								<div class="col-xs-12" style="margin-top:20px;">
+									<button class="btn btn-primary" ng-click="sendMessage()">Send Message</button>
+								</div>	
+							</div>
+						</div>
+					</div>				
+				</div>						
+			</div>
+		</div>
+		
+		<div class="col-xs-12 col-sm-6">
+			<div style="margin-top:20px;min-height:400px;">				
+				<div class="jumbotron" style="min-height:400px;">
+					<div class="row">					
+						<div class="col-xs-2"></div>						
+						<div class="col-xs-12 col-md-8">
+							<h4>Your messages would appear on Channel <strong>{{ channel}} </strong>:</h4>
+						</div>
+						<div class="col-xs-2"></div>						
+					</div>
+					<div class="row">
+						<div class="col-xs-2"></div>
+						<div class="col-xs-12 col-md-8">							
+							<textarea rows="10" cols="40" class="receiveText"></textarea>						
+						</div>
+						<div class="col-xs-2"></div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+</div>

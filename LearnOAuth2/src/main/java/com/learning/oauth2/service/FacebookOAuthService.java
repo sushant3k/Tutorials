@@ -20,8 +20,13 @@ public interface FacebookOAuthService extends OAuthService{
 	final String FB_USER_PROFILE_FETCH_URI = "https://graph.facebook.com/v2.0/me?fields=id,name,picture";
 	
 	
-	final String API_KEY="<Use your API key>";
-	final String API_SECRET="<User your API Secret>"; // Do not share this with anybody
+//	final String API_KEY="<Use your API key>";
+	final String API_KEY="691268537646702";
+	
+	
+	final String API_SECRET="dcb990554ee83f619c78e01536a069dd"; // Do not share this with anybody
+	
+//	final String API_SECRET="<User your API Secret>"; // Do not share this with anybody
 	final String SCOPE="email"; // Fetch email also besides the full public profile
 	final String STATE="facebook";  // TODO: What are the possible values for state.
 	
