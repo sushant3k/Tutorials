@@ -1,0 +1,455 @@
+<div ng-controller="DetailsController">
+	
+	<div class="panel panel-primary" style="height:140px;">
+		<div class="panel-heading">Device</div>
+		<div class="panel-body">
+			<table class="bordered tble" style="margin-left:0px;margin-top:0px;">
+				<thead>
+				   <tr>
+					  <th style="width:2em;">Name</th>
+					  <th style="width:2em;">Type</th>					
+					  <th style="width:2em;">OS Version</th>
+					  <th style="width:2em;">IMEI</th>					  
+				   </tr>
+				</thead>
+				<tbody>
+				   <tr >
+					  <td> {{ details.deviceProfile.name }}</td>
+					  <td> {{ details.deviceProfile.type }}</td>
+					  <td> {{ details.deviceProfile.osVersion }}</td>
+					  <td> {{ details.deviceProfile.deviceIdentifier }}</td>					  
+				   </tr>
+				 </tbody>
+		</table>
+		</div>
+	</div>
+				
+	
+	<ul class="nav nav-tabs">
+	  <li role="presentation" class="active">
+	  	<a data-toggle="tab" href="#chartsTab" target="_self">Charts</a></li>
+	  <li role="presentation">
+	  	<a data-toggle="tab" href="#tsTab" target="_self">Transport Stream</a></li>
+	  <li role="presentation">
+	  	<a data-toggle="tab" href="#tcpTab" target="_self">TCP</a></li>
+	  <li role="presentation" >
+	  	<a data-toggle="tab" href="#hlsTab" target="_self">HLS</a></li>
+	</ul>
+	
+	<div class="tab-content">
+		<div id="chartsTab" class="tab-pane fade in active">
+			<div id="chartsView" style="margin-top:5px;">
+				<div class="panel panel-primary" style="min-height:700px;">
+					<div class="panel-heading">Charts View : </div>
+					<div class="panel-body">
+						<div class="row">
+							<div id="streamGraph" class="col-sm-6">
+								
+							</div>
+							
+							<div id="bandwidthChart" class="col-sm-6">
+								
+							</div>
+						</div> 
+						
+						<div class="row" style="margin-top:150px;">
+							<div id="stallChart2" class="col-sm-6">
+							
+							</div>
+							
+							
+							<div id="stallChart" class="col-sm-6">
+							
+							</div>
+							
+						</div>
+						
+						<div class="row" style="margin-top:150px;">
+							<div id="errorsChart" class="col-sm-6">
+							
+							</div>
+							
+							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="tsTab" class="tab-pane fade">
+			
+			<div id="tsView" style="margin-top:5px;" ng-repeat="ts in details.ts">
+				<div class="panel panel-primary">
+					<div class="panel-heading">TS Filename : {{ ts.filename }} </div>
+					
+					<div class="panel-body">						
+						<div class="row">
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Sync Error</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ ts.syncErrorCount }}</label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Scrambled:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;"> {{ ts.scrambledPayloadCount }} </label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Malformed:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ ts.malformedPacketCount }}</label>
+							</div>
+											
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Container Format</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ ts.containerFormat }}</label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Number of Streams:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;"> {{ ts.numberOfStreams }} </label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Duration:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ ts.duration }}</label>
+							</div>
+											
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Start Time</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ ts.startTime }}</label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>File Size(bytes):</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;"> {{ ts.fileSize }} </label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Bitrate:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ ts.bitrate }}</label>
+							</div>
+											
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-2" style="text-align:left;">
+								<label>PAT Errors</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ ts.patErrors }}</label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>PMT Errors:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;"> {{ ts.pmtErrors }} </label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Null Packet:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ ts.nullPacketCount }}</label>
+							</div>											
+						</div>		
+						
+						<div class="row">
+							<div class="col-sm-12" ng-repeat="stream in ts.streams">
+								<div class="panel panel-primary">
+									<div class="panel-heading">Stream Index : {{ stream.streamId }} </div>									
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Duration:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.duration }}</label>
+											</div>
+											
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Direction:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.direction }}</label>
+											</div>
+											
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Dropped Frames:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.droppedFrames }}</label>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Start Time:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.startTime }}</label>
+											</div>
+											
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Language:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.language }}</label>
+											</div>
+											
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Codec Type:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.codecType }}</label>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Codec Id:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.codecId }}</label>
+											</div>
+											
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Number of frames:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.numberOfFrames }}</label>
+											</div>
+											
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Video Height:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.videoHeight }}</label>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Video Frames:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.videoframes }}</label>
+											</div>
+											
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Video Format:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.videoFormat }}</label>
+											</div>
+											
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Video Width:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.videoWidth }}</label>
+											</div>
+										</div>
+										<div class="row">											
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Audio Sample Rate:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.audioSampleRate }}</label>
+											</div>
+											
+											<div class="col-sm-2" style="text-align:left;">
+												<label>Audio Channels:</label>
+											</div>
+											
+											<div class="col-sm-2" >
+												<label style="font-weight:normal;">{{ stream.audioChannels }}</label>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>				
+					</div>					
+				</div>
+			</div>
+		</div>
+		
+		<div id="tcpTab" class="tab-pane fade">
+			<div id="tcpView" style="margin-top:5px;" >
+				<div class="panel panel-primary" ng-repeat="tp in details.tcp">
+					<div class="panel-heading">TCP View : </div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Source IP-PORT:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ tp.sourceIP }}:{{ tp.sourcePort }}</label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Dest IP-PORT:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;"> {{ tp.destIP }}:{{ tp.destPort}} </label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Bandwidth:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ tp.bandwidth }}</label>
+							</div>
+											
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-2" style="text-align:left;">
+								<label>ReTransmission:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ tp.retransmission }}</label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Dropped Packets:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;"> {{ tp.droppedPackets }}</label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Connection Resets:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ tp.connectionResets }}</label>
+							</div>
+											
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Dup Acks:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ tp.dupAcks }}</label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Out of Order:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;"> {{ tp.outOfOrder }}</label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>First Packet Received Time:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ tp.firstPacketReceivedTime }}</label>
+							</div>
+											
+						</div>
+						
+						<div class="row">
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Last Packet Received Time:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;">{{ tp.lastPacketReceivedTime }}</label>
+							</div>
+							
+							<div class="col-sm-2" style="text-align:left;">
+								<label>Bytes:</label>
+							</div>
+							
+							<div class="col-sm-2" >
+								<label style="font-weight:normal;"> {{ tp.bytesInPayload }}</label>
+							</div>
+						</div>
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="hlsTab" class="tab-pane fade">
+			<div id="hlsView" style="margin-top:5px;">
+				<div class="panel panel-primary">
+					<div class="panel-heading">HLS Filename : </div>
+					<div class="panel-body">
+						Sample
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+	
+	
+</div>

@@ -1,0 +1,366 @@
+<div ng-controller="DashboardController">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="tble bordered">
+					<thead>
+					   <tr>
+						  <th style="width:40%;">Device Identifier</th>
+						  <th style="width:40%;">Session Identifier</th>											  
+						  <th style="width:20%;">View</th>
+					   </tr>
+					</thead>
+					<tbody>
+					   <tr ng-repeat="d in devices">						  
+						  <td>{{ d.deviceIdentifier }}</td>
+						  <td> {{ d.sessionId }} </td>
+						  <td><a href ="#/details/{{d.deviceIdentifier }}/{{ d.sessionId }}">View</a></td>						
+					   </tr>
+					 </tbody>
+					
+				</table>
+			</div>
+		</div>
+	
+	</div>
+<!-- 
+	<div style="width:10%;float:left;min-height:1024px;border: 1px solid;">
+		<div id="navcontainer">
+			<ul ng-repeat="d in devices">
+				<li style="cursor:pointer;" ng-click="displayDeviceDetails(d.deviceIdentifier);">
+					<a href  ng-click="findStatistics(d)">{{ d.deviceIdentifier }}</a>	
+					<ul ng-repeat=" sess in d.session">
+						<li><a href ="#/details/{{d.deviceIdentifier }}/{{ sess.id }}">{{ sess.id }}</a></li>
+					</ul>		
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	
+	<div style="width:90%;min-height:1024px;float:left;">
+		<div style="width:50%;height:50%;float:left; border:1px solid;">
+			<div style="width:100%; border:1 px solid;">
+				Device Details
+			</div>
+			
+			<div style="width:50%;float:left">
+				Name
+			</div>
+			<div style="width:50%;float:left">
+				{{ device.name }}
+			</div>
+			<div style="clear:both;"></div>
+			
+			<div style="width:50%;float:left">
+				Type
+			</div>			
+			<div style="width:50%;float:left">
+				{{ device.type }}
+			</div>			
+			<div style="clear:both;"></div>
+			
+			<div style="width:50%;float:left">
+				OS Version
+			</div>
+			<div style="width:50%;float:left">
+				{{ device.osVersion }}
+			</div>
+			<div style="clear:both;"></div>
+			
+			<div style="width:50%;float:left">
+				Type
+			</div>			
+			<div style="width:50%;float:left">
+				{{ device.type }}
+			</div>			
+			<div style="clear:both;"></div>
+			
+			<div style="width:50%;float:left">
+				Network
+			</div>
+			<div style="width:50%;float:left">
+				{{ device.network }}
+			</div>
+			<div style="clear:both;"></div>
+			
+			<div style="width:50%;float:left">
+				Latitude
+			</div>			
+			<div style="width:50%;float:left">
+				{{ device.latitude }}
+			</div>			
+			<div style="clear:both;"></div>
+			
+			<div style="width:50%;float:left">
+				Longitude
+			</div>			
+			<div style="width:50%;float:left">
+				{{ device.longitude }}
+			</div>
+			
+			<div style="clear:both;"></div>
+						
+		</div>		
+		
+		<div style="width:50%;height:50%;float:left; border:1px solid;">
+			<div style="width:50%; border:1 px solid;min-height: 200px;">
+				HLS Parameters
+			</div>
+			
+		</div>
+		
+		<div style="width:50%;float:left;border:1px solid;">
+			<div style="margin:2px; width:100%;border: 1px solid;">
+				<div style="margin:1px; width:100%;">
+					<div style="height:25px;">TCP Params</div>
+					
+					<div style="width:50%;float:left">
+						 Stream Index 
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.streamIndex }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						 Session Identifier
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.sessionId }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						 Source IP
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.sourceIp }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						 Source Port
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.sourcePort }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						 Destination IP
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.destIp }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						 Destination Port
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.destPort }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						 Client Bandwidth 
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.clientBandWidth }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						 Re-Transmission Count
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.retransmissionCount }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						 Dropped Packets Count
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.packetsDropped }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						 Number of Connection Resets
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.numberOfConnectionResets }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					
+					<div style="width:50%;float:left">
+						 Duplicate Acks
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.dupAcks }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					
+					<div style="width:50%;float:left">
+						 Out of Order
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.outOfOrder }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					
+					<div style="width:50%;float:left">
+						First Packet Received Time (ms)
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.firstPacketReceivedTime }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						Last Packet Received Time (ms) 
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.lastPacketReceivedTime }}
+					</div>			
+					<div style="clear:both;"></div>
+					
+					<div style="width:50%;float:left">
+						Bits in Payload (ms) 
+					</div>			
+					<div style="width:50%;float:left">
+						{{ data.totalNumberOfBytes }}
+					</div>			
+					<div style="clear:both;"></div>				
+				</div>
+			</div>
+		</div>
+		
+		<div style="clear:both;"></div>
+		
+		<div style="width:100%; border:1px solid;min-height:300px;">
+			<div style="margin:2px; width:100%;">
+				<div style="margin:1px; width: 100%; border: 1px solid;">
+					<h3>Stream Parameters</h3>
+				</div>
+				<div style="margin:1px; width: 100%">					
+					<div style="width:5%;float:left;border:1px solid; ">#Stream</div>
+					<div style="width:5%;float:left;border:1px solid; ">Duration(ms)</div>
+					<div style="width:5%;float:left;border:1px solid; ">Direction</div>
+					<div style="width:7%;float:left;border:1px solid; ">DroppedFrames</div>
+					<div style="width:7%;float:left;border:1px solid; ">StartTime(ms)</div>
+					<div style="width:5%;float:left;border:1px solid; ">Language</div>					
+					<div style="width:10%;float:left;border:1px solid; ">Codec Type</div>
+					<div style="width:10%;float:left;border:1px solid; ">Codec ID</div>
+					<div style="width:5%;float:left;border:1px solid; ">#Frames</div>
+					<div style="width:5%;float:left;border:1px solid; ">VideoHt</div>
+					<div style="width:10%;float:left;border:1px solid; ">VideoFR</div>
+					<div style="width:5%;float:left;border:1px solid; ">VideoFormat</div>
+					<div style="width:10%;float:left;border:1px solid; ">A-Sample-Rate</div>
+					<div style="width:5%;float:left;border:1px solid; ">A-Channels</div>										
+					<div style="clear:both;"></div>
+				</div>
+				
+				<div style="width: 100%" ng-repeat="s in streams">
+					<div style="width:5%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streamIndex }}</div>
+					<div style="width:5%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.durationInMilliSecs }}</div>
+					<div style="width:5%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.direction }}</div>
+					<div style="width:7%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.numberOfDroppedFrames }} </div>
+					<div style="width:7%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.startTimeInMilliSecs }}</div>
+					<div style="width:5%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.language }}</div>					
+					<div style="width:10%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.codecType }}</div>
+					<div style="width:10%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.codecID }}</div>
+					<div style="width:5%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.numberOfFrames }}</div>
+					<div style="width:5%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.videoHeight }}</div>
+					<div style="width:10%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.videoFrameRate }} </div>
+					<div style="width:5%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.videoFormat }}</div>
+					<div style="width:10%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.audioSampleRate }}</div>
+					<div style="width:5%;float:left;border:1px solid;word-wrap:break-word;">{{ s.streams.audioChannels }}</div>
+					<div style="clear:both;"></div>
+				</div>
+			</div>								
+		</div>
+		<div style="margin:1px; width:100%; border:1px solid;">
+				<div style="height:25px; border:0.5px solid;">Transport Stream Parameters</div>
+				
+				<div style="width:10%;float:left;border:1px solid;">
+					Sync Error Count
+				</div>
+				<div style="width:10%;float:left;border:1px solid; ">
+					Scrambled Payload Count
+				</div>
+				<div style="width:10%;float:left;border:1px solid; ">
+					Malformed Packet Count
+				</div>
+				<div style="width:10%;float:left;border:1px solid; ">
+					Container Format
+				</div>
+				<div style="width:10%;float:left;border:1px solid; ">
+					Number of Streams
+				</div>
+				
+				<div style="width:10%;float:left;border:1px solid; ">
+					Duration(ms)
+				</div>
+				
+				<div style="width:10%;float:left;border:1px solid; ">
+					Start Time(ms)
+				</div>
+				
+				<div style="width:10%;float:left;border:1px solid; ">
+					File size(bytes)
+				</div>
+				
+				<div style="width:10%;float:left;border:1px solid; ">
+					Bitrate
+				</div>
+				
+				<div style="clear:both;"></div>
+							
+				<div style="width:10%;float:left;border:1px solid; ">
+					{{ tsParams.data.syncErrorCount }}
+				</div>			
+				
+				<div style="width:10%;float:left;border:1px solid; ">
+					{{ tsParams.data.scrambledPayload }}
+				</div>			
+										
+				<div style="width:10%;float:left;border:1px solid; ">
+					{{ tsParams.data.malFormedPacket }}
+				</div>
+																		
+				<div style="width:10%;float:left;border:1px solid; ">
+					{{ tsParams.data.containerFormatShortName }}
+				</div>			
+										
+				<div style="width:10%;float:left;border:1px solid; ">
+					{{ tsParams.data.numberOfStreams }}
+				</div>			
+				<div style="width:10%;float:left;border:1px solid; ">
+					{{ tsParams.data.durationInMilliSecs }}
+				</div>			
+				<div style="width:10%;float:left;border:1px solid; ">
+					{{ tsParams.data.startTimeInMilliSecs }}
+				</div>			
+				
+				
+							
+				<div style="width:10%;float:left;border:1px solid; ">
+					{{ tsParams.data.fileSize }}
+				</div>			
+				
+				<div style="width:10%;float:left;border:1px solid; ">
+					{{ tsParams.data.bitRate }}
+				</div>			
+				<div style="clear:both;"></div>
+				
+			</div>	
+	</div>
+	 -->
+</div>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="app"  xmlns:th="http://www.thymeleaf.org">
+<head>	
+<title ng-bind="Page.title">QoE Dashboard</title>
+
+<meta name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+    
+<meta name="description" content="QoE Dashboard"/>
+<meta content="IE=Edge, chrome=IE7" http-equiv="X-UA-Compatible"/>
+<meta charset="utf-8"/>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" th:href="@{/static/bootstrap-3.3.5/css/bootstrap.min.css}"></link>
+
+<!-- Optional theme -->
+<link rel="stylesheet" th:href="@{/static/bootstrap-3.3.5/css/bootstrap-theme.min.css}"></link>
+
+<link type="text/css" rel="stylesheet"  th:href="@{/static/styles/app.css}" ></link>
+
+
+<link rel="icon" type="image/ico" th:href="@{/static/images/Favicon.ico}"/>
+<link href="//fonts.googleapis.com/css?family=Ubuntu:300italic,300,400italic,400,500italic,500,700italic,700" rel="stylesheet" type="text/css"/>
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700)" rel="stylesheet" type =" text/css"/>
+
+<script th:src="@{/static/js/d3/d3.min.js}"></script>
+
+<script th:src="@{/static/js/jquery-1.9.1.min.js}"></script>
+<script th:src="@{/static/bootstrap-3.3.5/js/bootstrap.min.js}"></script>
+</head>
+
+<body class="container-fluid" >
+
+<div th:include="navbar"></div>
+
+<div ng-view="">
+</div>
+	<script th:src="@{/static/js/stomp.min.js}"></script>
+	<script th:src="@{/static/js/sockjs-0.3.4.min.js}"></script>
+	
+	<script th:src="@{/static/js/angular.js}"></script>
+	<script th:src="@{/static/js/angular-route.js}"></script>
+	<script th:src="@{/static/js/angular-sanitize.min.js}"></script>
+	<script th:src="@{/static/js/angular-animate.js}"></script>
+
+	<script th:src="@{/static/js/app.js}"></script> 	
+	
+	<script th:src="@{/static/js/controllers/dashboardController.js}"></script>
+	<script th:src="@{/static/js/services/dashboardService.js}"></script>
+	
+	<script th:src="@{/static/js/controllers/detailsController.js}"></script>
+	<script th:src="@{/static/js/services/detailsService.js}"></script>
+	
+	
+</body>
+</html>
