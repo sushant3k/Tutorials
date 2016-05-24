@@ -15,3 +15,5 @@ Once registered, the API Secret, API Key and the relevant URLs (redirect URLs) c
 
 If the application is deployed on the localhost and the server listens on port 8080, then it can be accessed from browser by typing the url: http://localhost:8080/LearnOAuth2/login
 
+
+### Refer to individual readme files in the project directories.
